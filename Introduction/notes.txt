@@ -1,0 +1,179 @@
+PROGRAMING
+- Issuing instructions to computers
+
+GO
+    cmd>> go run <program.go>
+    cmd>> go build <program.go>     ---------> exe
+- Created by google in 2009 and open-sourced in 2007
+- Allowed us to utilize applications in parallel
+e.g downloading, uploading and scrolling in an email save
+- Multiple threads run in parallel making applications faster.
+E.G A booking system ---> Requires concurrency i.e dealing with lots of things at once.
+- Go was designed with buit-in concurrency mechanism allowing it to take
+advantage of the new infrastructure.
+- concurrency in Go is cheap and easy
+
+======Main Uses of Go========
+- For performance applications
+- Running on scaled, distributed systems
+
+====Characteristics of Go=======
+- Simplicity and readability of python and Speed and efficiency of C++
+- Is used on the server side and backend's. 
+E.G Docker, Kubernetes, Vault and  Cockroach DB 
+- Easy to learn, read and write code
+- Apps are fast to build and run
+- Requires fewer resources
+- Compiled language and is cross platform
+
+NOTE: 
+1. Go programs are organized into packages
+2. Go's standard library, provides different core packages for us to use
+- A package is a collection of source files.
+- To find the right package by going to the docs or google.
+
+    cmd>> go run main.go
+
+SOME COMMANDS
+fmt.Println() ----> Prints a new line.
+
+=======Variables and Constants=========
+- Variables is a name associated to a value that can change during program execution.
+"var" keyword lets us declare a variable in go
+keywords are reserved words in every language.
+- Variable names should be descriptive of the value
+NOTE: In Go we must use a variable that we have declared else we get an error in code
+---> Same error occurs when we import a package and not use it.
+- Constants are like Variables, except that their values cannot be changed.
+%T is a place holder for the variable
+%v is a place holder for the variable
+ 
+
+Printf
+- Print formatted data. Contains a template string that contains the text that needs to be formatted.
+- Tells go how to format the value of the Variables
+
+===========Data Types============
+- Defines the type of data stored in a variable
+Basic Types:
+1. string- For textual Data. defined with double quotes "This is a string"
+2. integer- Representing whole numbers, positive and negative, e.g 5,129
+----> a. int8, int32, int64, uint8, unit16, uint64
+NOTE: Go identifies the errors at compile time and not at run time.
+Floating- Numbers that contain a decimal component(real numbers)
+----> float32- 32 bit floating point numbers
+-----> float64- 64-bit floating point numbers
+-----> complex64- Complex numbers with float32 real and imaginary parts
+-----> complex128- Complex numbers with float64 real and imaginary parts
+NOTE: Explicitely assign variables with data types to protect them during the program
+    conferenceName:="HackerPwn"
+    var conferenceName string="HackerPwn"
+
+======"fmt" Package=============
+- different functions for:
+    fomatted input and output(I/O)--->I/O processing
+a. Print messages(Printf, Println)
+b. Write into a file()
+c. Collect User Input()
+
+======Getting user input========
+- We will use the memory address in our built-in function
+    fmt.Scan(&var)
+
+=======Pointer=============
+- A pointer is a variable that points to the memory address of 
+another variable.
+- Special Variables
+E.G: 
+    var name = "Allan"
+    fmt.Println(&name)
+
+===========Arithetic Operations==================
+- When we do calculations in GO the variables have to be of the same type.
+
+=====Arrays & Slices in Go=====
+- Arrays in C/C++ are data structures used to store variables of the same type
+under the same name.
+- Arrays in Go store collection of elements in a single variable
+*Store the users entered data in some kind of list.
+- Arrays in Go have fixed size-----> How many elements the array can hold 
+----> also the type of data the array will store
+NOTE: Data type should be of the same type.
+PROBLEM: We may not know the size we needs
+    var bookings [50]string
+
+
+===========Slices in GO============
+- Slices is an abstraction of an Arrays
+- Slices are more flexible and powerful:
+variable-length or get an sub-array of its own
+- Have indexes and is resized when needed
+-----> is more prefered in GO
+    var bookings []string
+    var bookings =[]string{}
+    bookings :=[]string{}
+====> append() method is a built in function in GO thats adds an
+element at the end of a Slice.
+
+
+============LOOPS==================
+- Control structure we used to execute a block of code multiple times
+- Simplified in GO:
+----> You only have one loop "for loop" 
+
+a. Infinite For loop
+- ALlows us to execute code over and over again as the condition is true.
+    for{
+        fmt.Println("This is an infinity loop body")
+    }
+    for true{
+        //same as previous one
+    }
+- Repeats endlessly, as the condition is always true
+
+
+b. For-Each loop
+- Used to iterate over a list(SLICE/ARRAY)
+RANGE allows us to iterate over elements of different data structures(so not only arrays and slices)
+strings.Fields()--> Split the string with white space as separator.
+########NOTE: Google and visit documentation when in need of doing something in GO
+
+N/B--------Blank Identifier(_)----------
+-In GO we make unused variables Explicit(_)
+
+
+==========If...Else...BOOL============
+- If block is executed when a condition is true
+- Else block executes when condition turns false
+- else if{}----> allow us to test for multiple conditions
+- Condition evaluates to either true or false using expressions which are
+booleans(2 values TRUE/FALSE)
+"break" keyword is used to break out of infinite LOOPS
+"continue" keyword causes loop to skip the remainder of its body and go to the next iteration
+"=" is for assigning values
+"==" is for comparing values 
+----> Used in user Input validation
+
+=========Logical Operators=======
+- Allow us to chain multiple conditions together
+&& - Logical and checks if both conditions are true and returns true
+||- Logical or checks if one of the conditions is true and returns true
+!= - Logical NOT reverses the condition. 
+
+
+=========Switch Statements========
+- Is a better alternative to having multiple if.....else Statements
+- Default is executed if no match is found.
+----------------------------------------------------
+	city:="London"
+	switch city{
+		case "New York":
+			//execute code for booking
+		case "Singapore", "London":
+			//execute code for booking
+		case "Hong Kong":
+			//execute code for booking
+		default:
+			fmt.Println("No Valid City selected")
+	}
+----------------------------------------------------
