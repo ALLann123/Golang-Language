@@ -1,0 +1,358 @@
+========Go Programming=========
+- Open-source language developed by google.
+- Designed:
+	> efficient
+	> Easy for concurrency
+	> Easy syntax and Fast
+	> Cross-platform compatability
+- Popular for:
+	> Web Development
+	> network programming
+	> cloud services
+
+=====Basics======
+- Simplicity syntax
+- Minimizes redundant syntax
+
+======1.1 Hello==========
+- My first program:
+***********************************
+package main
+import "fmt"
+
+func main() {
+	fmt.Println("Hello World!!")
+}
+***********************************
+- Explanation:
+1. "package main": Every go program contains a package; main is the
+entry point.
+2. "import "fmt"**": Go uses import to bring in standard libraries here
+we use the fmt packages for output.
+3. "func main()" Where our program execution starts from.
+
+- Run the program:
+	cmd> go run main.go
+J:\9_Go_Lang\1_crash_course\1_hello_world>go run main.go
+Hello World!!
+---------------------------------------------
+
+======1.2 Variables and Constants======
+- Go supports static type checking, meaning all variables must be declared before
+use.
+- Variable is defined as a name associated to a value that can change during program
+execution.
+- Declare variables:
+**************************************
+package main
+
+import "fmt"
+
+func main() {
+	//lets declare the variable
+	var name string = "Allan"
+	var age int = 18
+
+	//another way to assign a variable
+	expert := "IT"
+
+	fmt.Println("Name: ", name)
+	fmt.Println("Age: ", age)
+	fmt.Println("Experience in: ", expert)
+}
+**************************************
+Running our code:
+	cmd> go run main.go
+J:\9_Go_Lang\1_crash_course\2_Variable_constant>go run main.go
+Name:  Allan
+Age:  18
+Experience in:  IT
+____________________________________________________
+- Explanation:
+1. "var name string = 'Allan'": Explicitly declares a name variable of type string
+with the value "Allan"
+2. "var age int= 18": Declares an age variable of type integer with the value'18'
+
+- Short Variable Declaration
+- Go offers a more concise way to declare variables using the ":=" syntax
+****************************************
+package main
+
+import "fmt"
+
+func main() {
+	name := "Wally"
+	amount := 12293
+
+	fmt.Println("Client's Name: ", name)
+	fmt.Println("Debt $ ", amount)
+}
+****************************************
+- Run the code:
+	cmd> go run main.go
+9_Go_Lang\1_crash_course\2_Variable_constant\shor_way>go run main.go
+Client's Name:  Wally
+Debt $  12293
+-------------------------------------------
+- ":=" is ideal for initialized variables
+
+- Constanct Declaration. 
+- A constant value once declared cannot change during program execution.
+****************************************
+package main
+
+import "fmt"
+
+//this is our constant value that will not change
+const Pi = 3.14159
+
+func main() {
+	radius := 21
+
+	//calculate
+	fmt.Printf("Calculate the Area of the Circle:\n")
+
+	//convert the radius to a floating point
+	area := Pi * float64(radius) * float64(radius)
+
+	fmt.Println("Circle Area is: ", area)
+}
+****************************************
+- We run the above program:
+	cmd> go run main.go
+\2_Variable_constant\constant_examp>go run main.go
+Calculate the Area of the Circle:
+Circle Area is:  1385.44119
+-------------------------------------------
+- To compile to an exe(standalone windows executable):
+	cmd> go build main.go
+RUn:
+	cmd> main.exe
+2_Variable_constant\constant_examp>go run main.go
+Calculate the Area of the Circle:
+Circle Area is:  1385.44119
+_____________________________________________________
+- In the above example, "const Pi = 3.14159" is a constant and will remain unchanged
+during program execution.
+
+
+=========2. Control Structures========
+- In Golang, they include:
+	> Conditional statements
+	> Loops
+	> Jump statements
+
+====2.1 Conditional Statements======
+- We use if conditions for conditional logic
+- "if" block executes when a condition returns true
+- "else" block executes when a condition is false
+***************************************
+package main
+
+import "fmt"
+
+func main() {
+	//our variable
+	age := 21
+
+	//if older allowed to party
+	if age >= 21 {
+		fmt.Println("You are an adult. Can party!!🎉🥳")
+	} else {
+		fmt.Println("You are not allowed to party!!😪")
+	}
+}
+***************************************
+- RUn:
+	cmd> go run main.go
+J:\9_Go_Lang\1_crash_course\3_Conditional_states>go run main.go
+You are an adult. Can party!!🎉🥳
+-------------------------------------------
+- Explain:
+	"if age >= 18" only runs if the condition is true
+otherwise the else blocks will run instead.
+
+
+=========2.2 Loop Statements=========
+- Go has a single loop structure "for loop"
+- The for loop is versatile and suitable for all looping needs
+- Basic for loop:
+**************************************
+package main
+
+import "fmt"
+
+func main() {
+	for i := 1; i <= 5; i++ {
+		fmt.Println("Iteration: ", i)
+	}
+}
+**************************************
+- Run:
+	cmd> go run main.go
+J:\9_Go_Lang\1_crash_course\4_for_loop>go run main.go
+Iteration:  1
+Iteration:  2
+Iteration:  3
+Iteration:  4
+Iteration:  5
+----------------------------------------
+- We initialize the variable i to value 1, check the condition, increment it
+and continue executing the code inside the for loop until the condition returns
+false.
+
+- Infinite loop and Breaking loop:
+*******************************************
+package main
+
+import "fmt"
+
+func main() {
+	i := 0
+
+	for {
+		if i > 5 {
+			break //exit the loop
+		}
+
+		fmt.Println("Infinite loop iteration: ", i)
+		i++
+	}
+}
+********************************************
+- Run:
+	cmd> go run main.go
+go run main.go
+Infinite loop iteration:  0
+Infinite loop iteration:  1
+Infinite loop iteration:  2
+Infinite loop iteration:  3
+Infinite loop iteration:  4
+Infinite loop iteration:  5
+--------------------------------------------
+- The "break" statement is used to break out of the infinite loop
+- "for {}": creates an infinite loop, used for waiting on events:
+	> Building an LLM CLI chatbot🚀🤖
+
+======Switch Statements=======
+- Allows for multi-condition checks, providing clearer syntax
+********************************************
+package main
+
+import "fmt"
+
+func main() {
+	day := 3
+
+	switch day {
+	case 1:
+		fmt.Println("Monday")
+	case 2:
+		fmt.Println("Tuesday")
+	case 3:
+		fmt.Println("Wednesday")
+	case 4:
+		fmt.Println("Thursday")
+	case 5:
+		fmt.Println("Friday")
+	default:
+		fmt.Println("Invalid Day")
+	}
+}
+********************************************
+- Run:
+	cmd> go run main.go
+J:\9_Go_Lang\1_crash_course\5_Switch_statements>go run main.go
+Wednesday
+--------------------------------------------
+- "switch statement" executed different "Case" blocks based on the value of the
+day, with default handling unmatched cases.
+
+
+==========3. Functions and Methods===============
+- Go has functions and support multiple return values, along with methods defined
+for types
+
+====3.1 Function Definition=====
+- Functions are defined using the "func" keyword and can return multiple values
+********************************************
+package main
+
+import "fmt"
+
+func main() {
+	//main executiion of a program is here
+	num_1 := 23
+	num_2 := 12
+
+	// call the addition function
+	result := add(num_1, num_2)
+
+	//print output
+	fmt.Println("Total is: ", result)
+}
+
+//write our addition function and returns the sum. Accepts two integers
+func add(a int, b int) int {
+	return a + b
+}
+********************************************
+- Run
+	cmd> go run main.go
+J:\9_Go_Lang\1_crash_course\6_functions>go run main.go
+Total is:  35
+--------------------------------------------
+- "func add(a int, b int) int" : Defines an add function that takes two integers
+ and returns their sum
+
+=====3.2 Method Definition=======
+- Go supports OOP through structures, but lacks traditional classes
+********************************************
+package main
+
+import "fmt"
+
+// define a Circle Struct---> similar to class in OOP
+type Circle struct {
+	//the value we accept
+	radius float64
+}
+
+// Define a method to calculate the area of the circle
+// Pass our struct as the input of our function
+func (c Circle) area() float64 {
+	return 3.14159 * c.radius * c.radius
+}
+
+func main() {
+	//call our struct and passing in a floating value
+	Areacircle := Circle{radius: 7.0}
+
+	//print the result
+	fmt.Println("Circle Area:", Areacircle)
+}
+********************************************
+- Run:
+	cmd> go run main.go
+J:\9_Go_Lang\1_crash_course\7_structs>go run main.go
+Circle Area: {7}
+-----------------------------------------------------
+- "Circle" is a struct type and area is a method associated with Circle to
+calculate its area(OOP)🤣🤣🤣
+
+===========COVERED==============
+1. Variables
+2. COnstants
+3. Control Structures
+4. Functions
+5. Methods
+
+(https://freedium-mirror.cfd/https://blog.stackademic.com/one-day-golang-crash-course-basics-made-easy-2082178b6d32)
+
+
+
+
+
+
+
+
